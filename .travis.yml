@@ -1,0 +1,6 @@
+
+# this is for the CI server for the linux environment
+
+
+language: 'node_js'
+-"6"

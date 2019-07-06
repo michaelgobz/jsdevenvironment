@@ -1,0 +1,25 @@
+
+# this is the windows continuous intergattion server
+ 
+# test against this version of node.js
+environment:
+  matrix:
+# node.js 
+   - nodejs_version: "6"
+# install scripts. (after the repo cloning) 
+install:
+ #get the latest avaliable version of node.js or io.js 
+  - ps: Install-product node $env:nodejs_version
+ # install node modules 
+  - npm install
+ #post-all the test scripts.
+test_script:
+ #output useful  info for debugger
+ - node --version
+ - npm --version
+ #run test
+
+ - npm test
+
+# dont actually build
+build: off
