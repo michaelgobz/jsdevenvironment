@@ -11,13 +11,30 @@ import getbaseUrl from './baseUrl';
 export function getuser(){
   return get('users')
 }
-
+// another public function
+export function deleteUser(id){
+  return del(`user ${id}`);
+}
 // promise and error handling by 
 
 function get(url){
   return fetch(baseUrl + Url).then(onSuccess , onError);
+
+
 }
-// then the onSuccess fucntion to handle that aspect 
+
+// we gona implement the del function here then the error handled by a promise
+
+function del(Url){
+  const request = new Request(baseUrl + Url,
+    {method:'DELETE'}
+    
+    );
+ 
+    return fetch(request).then(onSuccess, onError);
+}
+// then the onSuccess fucntion to handle that aspect
+
 
 function onSuccess(response){
   return response.json();

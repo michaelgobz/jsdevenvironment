@@ -1,13 +1,16 @@
+// this one serves our demo app int the production enviornment 
+
 import  express from 'express';
 import  path from 'path';
-import  open from'open';
-import webpack from 'webpack';
-import config from '../webpack.config.dev.js';
+import  open from'open'
+import compression from 'compression';
+// import webpack from 'webpack';
+// import config from '../webpack.config.dev.js';
 
  // we ahve gat to set up our port here
 
  
-
+// i hv commented out all the calls and configs of webapck
  var port =  3000
 
 
@@ -17,22 +20,29 @@ import config from '../webpack.config.dev.js';
 var App = express()
 // include the webpack compiler and the different things we need to use with it 
 
-const compiler = webpack(config);
+// const compiler = webpack(config);
 
 // the instanciate it to include our dependencies if any
 
-App.use(require('webpack-dev-middleware')(compiler, {
+/*App.use(require('webpack-dev-middileware')(compiler, {
  noinfo: true,
  publicPath: config.output.publicpath
-}))
+})) */
+
+
+// configure express to serve static files coz they are the ones we have genrated
+// setup gzip compression  so that we can monitor the files and sizes that are being sent over the wire 
+App.use(compression());
+App.use(express.static('dist'));
+
 
 App.get('/', function (req, res){
 
-    res.sendFile(path.join(__dirname , '../src/index.html'))
-})
+    res.sendFile(path.join(__dirname , '../dist/home.html')) // we serve the file from the dist folder
+ })
 
 // another route for our server
-
+/*
 App.get('/users',function(req , res ){
   // we gona pass in the data implying that its from a database
   res.json([
@@ -42,6 +52,7 @@ App.get('/users',function(req , res ){
       
   ]);
 });
+*/
 
 // some err handeling
 

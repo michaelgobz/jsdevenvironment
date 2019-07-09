@@ -1,0 +1,46 @@
+<!--
+
+  this file has some embedded js to enable to run errorlogin only in production 
+  it is add to the head of this document so that to reference the trackJS token so that 
+  we can use it to track the errors that occutr during our build process
+the EJS uses it templating synatx to do this by using some if block
+-->
+
+
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <% if (HtmlWebpackPlugin.options.trackJsToken) { %>
+    <!-- BEGIN BLOCK-->
+      <script type ='text/javaScript'>window._trackJs= {token: '<%=HtmlWebpackPlugin.options.trackJsToken%>;'</script>
+      <script type = 'text/javascript' src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+    <!-- END BLOCK-->
+       <% } %>
+    <title>
+      Sample | work
+    </title>
+  </head>  
+    <body>
+      <h1>hello You</h1>
+     <h2>Users</h2>
+     <table>
+       <thead>
+         <th>&nbsp</th>
+         <th>id</th>
+         <th>firstName</th>
+         <th>LastName</th>
+         <th>Email</th>
+       </thead>
+       <tbody id ="users">
+
+       </tbody>
+     </table>
+
+
+    </body>
+  
+</html> 
+
+
