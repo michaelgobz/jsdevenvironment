@@ -57,7 +57,7 @@ new HtmlWebpackPlugin ({
   trackJsToken :'db755741b4044218b22be7fa7c7aff23'
 }),
 
-   // this one elimiates all the duplicates during bundling for the app for that productio purpose
+   // this one elimiates all the duplicates during bundling for the app for that production purpose
    new webpack.optimize.DedupePlugin(),
 
     // this is where we add our minification logic of calling the method needed to create the minification using the webpack plugins
